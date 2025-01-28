@@ -1,0 +1,32 @@
+.. _forward:
+
+Forward
+-------
+
+.. py:class:: Forward
+    
+    .. py:method:: Forward(model: Model)
+    .. py:method:: Forward(model: Model, tol: float)
+    .. py:method:: Forward(model: Model, tol: float, maxIter: int)
+    .. py:method:: Forward(model: Model, solverName: str, tol: float, maxIter: int)
+
+    Setup
+        .. py:method:: setEps(e: float) -> None
+        .. py:method:: setMaxIter(m: int) -> None
+        .. py:method:: setNbCores(n: int) -> None
+        .. py:method:: setDirty(d: bool) -> None
+        .. py:method:: setAutoReleaseMemory(a: bool) -> None
+        .. py:method:: setSolver(name: str) -> None
+
+    Messaging
+        .. py:method:: onMessage(m: MessageFunctor) -> None
+        .. py:method:: onWarning(w: WarningFunctor) -> None
+        .. py:method:: onError(e: ErrorFunctor) -> None
+
+        .. py:method:: onProgress(p: ProgressFunctor) -> None
+        .. py:method:: onEnd(end: EndFunctor) -> None
+    
+    Interaction
+        .. py:method:: stopRequested(s: StopRequested) -> None
+        .. py:method:: releaseMemory() -> None
+        .. py:method:: run(resetBurgers: bool) -> None

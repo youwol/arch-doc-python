@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surface &mdash; PyArch 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Postprocess" href="postprocess.html" />
+    <link rel="prev" title="Interpolation" href="interpolation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyArch
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../important.html">Important</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">UserRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anderson-remote.html">AndersonianRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolation.html">Interpolation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Surface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Surface"><code class="docutils literal notranslate"><span class="pre">Surface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.Surface"><code class="docutils literal notranslate"><span class="pre">Surface.Surface()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.vertices"><code class="docutils literal notranslate"><span class="pre">Surface.vertices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.triangles"><code class="docutils literal notranslate"><span class="pre">Surface.triangles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.nbTriangles"><code class="docutils literal notranslate"><span class="pre">Surface.nbTriangles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.nbVertices"><code class="docutils literal notranslate"><span class="pre">Surface.nbVertices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.changeCoordinates"><code class="docutils literal notranslate"><span class="pre">Surface.changeCoordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.setBC"><code class="docutils literal notranslate"><span class="pre">Surface.setBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Surface.setBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.setBCValues"><code class="docutils literal notranslate"><span class="pre">Surface.setBCValues()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Surface.setBCValues()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.setDisplFromVertices"><code class="docutils literal notranslate"><span class="pre">Surface.setDisplFromVertices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.setDisplFromTriangles"><code class="docutils literal notranslate"><span class="pre">Surface.setDisplFromTriangles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.addConstraint"><code class="docutils literal notranslate"><span class="pre">Surface.addConstraint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.seismicMoment"><code class="docutils literal notranslate"><span class="pre">Surface.seismicMoment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.burgers"><code class="docutils literal notranslate"><span class="pre">Surface.burgers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.burgersPlus"><code class="docutils literal notranslate"><span class="pre">Surface.burgersPlus()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.burgersMinus"><code class="docutils literal notranslate"><span class="pre">Surface.burgersMinus()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Surface.residualTractions"><code class="docutils literal notranslate"><span class="pre">Surface.residualTractions()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="postprocess.html">Postprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forward.html">Forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inequalities.html">Inequalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="burger_filter.html">BurgerFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types in Arch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyArch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API</a></li>
+      <li class="breadcrumb-item active">Surface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/surface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="surface">
+<span id="id1"></span><h1>Surface<a class="headerlink" href="#surface" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Surface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Surface</span></span><a class="headerlink" href="#Surface" title="Link to this definition"></a></dt>
+<dd><p>A surface discontinuity representing either a fault or a cavity.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.Surface">
+<span class="sig-name descname"><span class="pre">Surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.html#Model" title="Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Indices</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Surface.Surface" title="Link to this definition"></a></dt>
+<dd><p>The constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="model.html#Model" title="Model"><em>Model</em></a>) – The model for which this surface belongs to</p></li>
+<li><p><strong>coordinates</strong> (<em>Coordinates</em>) – the vertices coordinates as a flat array [x,y,z,x,y,z,…]</p></li>
+<li><p><strong>indices</strong> (<em>Indices</em>) – the triangle indices as a flat array [i,j,k, i,j,k,…]</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4 vertices coordinates</span>
+<span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+<span class="c1"># triangles indices</span>
+<span class="n">triangles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">surface</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triangles</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.vertices">
+<span class="sig-name descname"><span class="pre">vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Coordinates</span></span></span><a class="headerlink" href="#Surface.vertices" title="Link to this definition"></a></dt>
+<dd><p>Get the vertices coordinates as a flat array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.triangles">
+<span class="sig-name descname"><span class="pre">triangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Indices</span></span></span><a class="headerlink" href="#Surface.triangles" title="Link to this definition"></a></dt>
+<dd><p>Get the triangle indices as a flat array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.nbTriangles">
+<span class="sig-name descname"><span class="pre">nbTriangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Surface.nbTriangles" title="Link to this definition"></a></dt>
+<dd><p>Get the number of triangle making this surface</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.nbVertices">
+<span class="sig-name descname"><span class="pre">nbVertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#Surface.nbVertices" title="Link to this definition"></a></dt>
+<dd><p>Get the number of vertices making this surface</p>
+</dd></dl>
+
+<dl>
+<dt>Setup boundary conditions and others</dt><dd><dl class="py method">
+<dt class="sig sig-object py" id="Surface.changeCoordinates">
+<span class="sig-name descname"><span class="pre">changeCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinates</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.changeCoordinates" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.setBC">
+<span class="sig-name descname"><span class="pre">setBC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typeBc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.setBC" title="Link to this definition"></a></dt>
+<dd><p>Set the boundary conditions on this discontinuity using a constant value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> (<em>str</em>) – the axis name (<code class="docutils literal notranslate"><span class="pre">normal</span></code>, <code class="docutils literal notranslate"><span class="pre">strike</span></code> or <code class="docutils literal notranslate"><span class="pre">dip</span></code>)</p></li>
+<li><p><strong>typeBc</strong> (<em>str</em>) – the type of boubdary condition. For traction boundary
+condition, possible names are <code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">free</span></code>, <code class="docutils literal notranslate"><span class="pre">traction</span></code>, <code class="docutils literal notranslate"><span class="pre">neumann</span></code> or <code class="docutils literal notranslate"><span class="pre">unknown</span></code>.
+For displacement boundary condition, possible names are <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">displ</span></code>, <code class="docutils literal notranslate"><span class="pre">displacement</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">dirichlet</span></code>, <code class="docutils literal notranslate"><span class="pre">locked</span></code> or <code class="docutils literal notranslate"><span class="pre">imposed</span></code>.</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – the constant initial value</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triangles</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setBC</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;free&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">setBC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typeBc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CoordinateFunctor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Set the boundary conditions on this discontinuity using a lambda function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> (<em>str</em>) – the axis name (<code class="docutils literal notranslate"><span class="pre">normal</span></code>, <code class="docutils literal notranslate"><span class="pre">strike</span></code> or <code class="docutils literal notranslate"><span class="pre">dip</span></code>)</p></li>
+<li><p><strong>typeBc</strong> (<em>str</em>) – the type of boubdary condition. For traction boundary
+condition, possible names are <code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">free</span></code>, <code class="docutils literal notranslate"><span class="pre">traction</span></code>, <code class="docutils literal notranslate"><span class="pre">neumann</span></code> or <code class="docutils literal notranslate"><span class="pre">unknown</span></code>.
+For displacement boundary condition, possible names are <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">displ</span></code>, <code class="docutils literal notranslate"><span class="pre">displacement</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">dirichlet</span></code>, <code class="docutils literal notranslate"><span class="pre">locked</span></code> or <code class="docutils literal notranslate"><span class="pre">imposed</span></code>.</p></li>
+<li><p><strong>value</strong> (<em>lambda</em>) – the lambda function</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="mi">1200</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triangles</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setBC</span><span class="p">(</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;free&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="o">-</span><span class="n">rho</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.setBCValues">
+<span class="sig-name descname"><span class="pre">setBCValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.setBCValues" title="Link to this definition"></a></dt>
+<dd><p>Reset the boundary condition values as a constant value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">setBCValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Set the boundary condition values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.setDisplFromVertices">
+<span class="sig-name descname"><span class="pre">setDisplFromVertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">displ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.setDisplFromVertices" title="Link to this definition"></a></dt>
+<dd><p>Set the displacement discontinuity at vertices (will interpolate at triangles)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.setDisplFromTriangles">
+<span class="sig-name descname"><span class="pre">setDisplFromTriangles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">displ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.setDisplFromTriangles" title="Link to this definition"></a></dt>
+<dd><p>Set the displacement discontinuity at triangles</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.addConstraint">
+<span class="sig-name descname"><span class="pre">addConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ineq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="inequalities.html#Inequality" title="Inequality"><span class="pre">Inequality</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Surface.addConstraint" title="Link to this definition"></a></dt>
+<dd><p>Add a new inequality constraint</p>
+</dd></dl>
+
+</dd>
+<dt>Output</dt><dd><dl class="py method">
+<dt class="sig sig-object py" id="Surface.seismicMoment">
+<span class="sig-name descname"><span class="pre">seismicMoment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Surface.seismicMoment" title="Link to this definition"></a></dt>
+<dd><p>Get the seismic moment for this surface</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.burgers">
+<span class="sig-name descname"><span class="pre">burgers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">local</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">atTriangles</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Surface.burgers" title="Link to this definition"></a></dt>
+<dd><p>Get the displacement discontinuity (Burger’s vectors) as a flat array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>local</strong> (<em>bool</em>) – If displacement discontinuities have to stay in triangle local coordinate system</p></li>
+<li><p><strong>atTriangles</strong> (<em>bool</em>) – If displacement discontinuities have to be interpolated at vertices or not</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.burgersPlus">
+<span class="sig-name descname"><span class="pre">burgersPlus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">local</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">atTriangles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Surface.burgersPlus" title="Link to this definition"></a></dt>
+<dd><p>Get the displacement discontinuity on the positive side as a flat array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>local</strong> (<em>bool</em>) – If displacement discontinuities have to stay in triangle local coordinate system</p></li>
+<li><p><strong>atTriangles</strong> (<em>bool</em>) – If displacement discontinuities have to be interpolated at vertices or not</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – The distance to the triangle in order to avoid singularities</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.burgersMinus">
+<span class="sig-name descname"><span class="pre">burgersMinus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">local</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">atTriangles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Surface.burgersMinus" title="Link to this definition"></a></dt>
+<dd><p>Get the displacement discontinuity on the negative side as a flat array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>local</strong> (<em>bool</em>) – If displacement discontinuities have to stay in triangle local coordinate system</p></li>
+<li><p><strong>atTriangles</strong> (<em>bool</em>) – If displacement discontinuities have to be interpolated at vertices or not</p></li>
+<li><p><strong>delta</strong> (<em>float</em>) – The distance to the triangle in order to avoid singularities</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Surface.residualTractions">
+<span class="sig-name descname"><span class="pre">residualTractions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Surface.residualTractions" title="Link to this definition"></a></dt>
+<dd><p>Get the residual tractions if any (e.g., when frictio is used.</p>
+</dd></dl>
+
+</dd>
+</dl>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4 vertices coordinates</span>
+<span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+<span class="c1"># triangles indices</span>
+<span class="n">triangles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Surface s is directly put into the model</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">triangles</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interpolation.html" class="btn btn-neutral float-left" title="Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="postprocess.html" class="btn btn-neutral float-right" title="Postprocess" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, fmaerten.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

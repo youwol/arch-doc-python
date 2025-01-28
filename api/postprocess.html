@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Postprocess &mdash; PyArch 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Forward" href="forward.html" />
+    <link rel="prev" title="Surface" href="surface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyArch
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../important.html">Important</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">UserRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anderson-remote.html">AndersonianRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolation.html">Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surface.html">Surface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Postprocess</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Postprocess"><code class="docutils literal notranslate"><span class="pre">Postprocess</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.Postprocess"><code class="docutils literal notranslate"><span class="pre">Postprocess.Postprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.setNbCores"><code class="docutils literal notranslate"><span class="pre">Postprocess.setNbCores()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.isHalfSpace"><code class="docutils literal notranslate"><span class="pre">Postprocess.isHalfSpace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.onProgress"><code class="docutils literal notranslate"><span class="pre">Postprocess.onProgress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.onEnd"><code class="docutils literal notranslate"><span class="pre">Postprocess.onEnd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.stopRequested"><code class="docutils literal notranslate"><span class="pre">Postprocess.stopRequested()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.onMessage"><code class="docutils literal notranslate"><span class="pre">Postprocess.onMessage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.onWarning"><code class="docutils literal notranslate"><span class="pre">Postprocess.onWarning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.onError"><code class="docutils literal notranslate"><span class="pre">Postprocess.onError()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.displAt"><code class="docutils literal notranslate"><span class="pre">Postprocess.displAt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.strainAt"><code class="docutils literal notranslate"><span class="pre">Postprocess.strainAt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.stressAt"><code class="docutils literal notranslate"><span class="pre">Postprocess.stressAt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.displ"><code class="docutils literal notranslate"><span class="pre">Postprocess.displ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.strain"><code class="docutils literal notranslate"><span class="pre">Postprocess.strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Postprocess.stress"><code class="docutils literal notranslate"><span class="pre">Postprocess.stress()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="forward.html">Forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inequalities.html">Inequalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="burger_filter.html">BurgerFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types in Arch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyArch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API</a></li>
+      <li class="breadcrumb-item active">Postprocess</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/postprocess.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="postprocess">
+<span id="id1"></span><h1>Postprocess<a class="headerlink" href="#postprocess" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Postprocess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Postprocess</span></span><a class="headerlink" href="#Postprocess" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.Postprocess">
+<span class="sig-name descname"><span class="pre">Postprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model.html#Model" title="Model"><span class="pre">Model</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Postprocess.Postprocess" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.setNbCores">
+<span class="sig-name descname"><span class="pre">setNbCores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.setNbCores" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.isHalfSpace">
+<span class="sig-name descname"><span class="pre">isHalfSpace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Postprocess.isHalfSpace" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl>
+<dt>Messaging</dt><dd><dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.onProgress">
+<span class="sig-name descname"><span class="pre">onProgress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ProgressFunctor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.onProgress" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.onEnd">
+<span class="sig-name descname"><span class="pre">onEnd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">const</span> <span class="pre">EndFunctor</span> <span class="pre">&amp;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.onEnd" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.stopRequested">
+<span class="sig-name descname"><span class="pre">stopRequested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StopRequested</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Postprocess.stopRequested" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.onMessage">
+<span class="sig-name descname"><span class="pre">onMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MessageFunctor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.onMessage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.onWarning">
+<span class="sig-name descname"><span class="pre">onWarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WarningFunctor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.onWarning" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.onError">
+<span class="sig-name descname"><span class="pre">onError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ErrorFunctor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Postprocess.onError" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd>
+<dt>Compute at one point</dt><dd><dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.displAt">
+<span class="sig-name descname"><span class="pre">displAt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinate</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Coordinate</span></span></span><a class="headerlink" href="#Postprocess.displAt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.strainAt">
+<span class="sig-name descname"><span class="pre">strainAt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinate</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StressTensor</span></span></span><a class="headerlink" href="#Postprocess.strainAt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.stressAt">
+<span class="sig-name descname"><span class="pre">stressAt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinate</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StressTensor</span></span></span><a class="headerlink" href="#Postprocess.stressAt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd>
+<dt>Compute at many points</dt><dd><dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.displ">
+<span class="sig-name descname"><span class="pre">displ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinates</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Postprocess.displ" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.strain">
+<span class="sig-name descname"><span class="pre">strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinates</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Postprocess.strain" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Postprocess.stress">
+<span class="sig-name descname"><span class="pre">stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Coordinates</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Vector</span></span></span><a class="headerlink" href="#Postprocess.stress" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="surface.html" class="btn btn-neutral float-left" title="Surface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forward.html" class="btn btn-neutral float-right" title="Forward" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, fmaerten.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

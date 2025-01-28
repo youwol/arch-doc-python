@@ -1,0 +1,45 @@
+.. _model:
+
+Model
+-----
+
+.. py:class:: Model
+
+    Base class to describe a Arch model
+
+    .. py:method:: setHalfSpace(hs: bool)
+
+        Set the half- or whole-space for this model
+
+        :param hs bool: True for a half-space model
+
+    .. py:method:: halfSpace()
+
+        Tells if the model is in half-space or not
+    
+    .. py:method:: nbDof()
+
+        Gets the number of unknown for the model
+    
+    .. py:method:: addRemote(remote: Remote)
+
+        Add a new remote in the model
+
+        :param py:class:`Remote` remote: The remote stress
+    
+    .. py:method:: setMaterial(poisson: float, younf: float, density: float)
+
+        Set the material for this model
+
+        :param float poisson: The poisson ratio
+        :param float young: The Young's modulus
+        :param float density: The density
+
+
+    Usage
+    -----
+.. code-block:: python
+
+    model = Model()
+    model.setHalfSpace(True)
+    model.setMaterial(0.25, 1e9, 1000)

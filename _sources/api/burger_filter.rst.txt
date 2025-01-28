@@ -1,0 +1,54 @@
+.. _burgerfilter:
+
+BurgerFilter
+------------
+
+.. py:class:: BurgerFilter
+
+    Allows to change the convention of the computed displcement discontinuity (also known
+    as Burger vectors).
+    By default, the convention is as described by Okada. It is possible to use another
+    convention such as the one defined in Poly3D by mean of this class.
+
+    .. py:method:: setAxisOrder(order: [str, str, str])
+
+        The order of the axis. An array of 3 strings which can be either `dip`,
+        `strike` or `normal`. Typically, this property is used to order the components
+        of the displacement when calling `Surface.displ`, `Surface.displPlus` or `Surface.displMinus`
+        (or equivalently `Solution.burgers`, `Solution.burgersPlus` or `Solution.burgersMinus`).
+
+    .. py:method:: setAxisRevert(revert: [bool, bool, bool])
+
+        Revert of the displacement vectors axis.
+
+    .. py:method:: apply(burgers: Vectord) -> Vector
+
+        Apply the filter to a given burger list (provided as a flat array)
+
+    .. py:method:: setupOkada()
+
+        Convenient method to switch to Okada convention (default one). It corresponds to
+
+        .. code-block:: python
+
+            axisOrder  = ['normal', 'strike', 'dip']
+            axisRevert = [False   , False   , False]
+
+    .. py:method:: setupPoly3D()
+
+        Convenient method to switch to Poly3D convention. It corresponds to
+
+        .. code-block:: python
+
+            axisOrder  = ['dip', 'strike', 'normal']
+            axisRevert = [True , False   , False   ]
+
+
+    Usage
+    -----
+.. code-block:: python
+
+    const filter = BurgerFilter()
+    filter.setAxisOrder (["dip", "strike", "normal"])
+    filter.setAxisRevert([ True,  False  ,  False  ])
+    burgers = filter.apply( surface.displ() )

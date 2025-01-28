@@ -1,0 +1,15 @@
+.. PyArch documentation master file
+
+PyArch documentation
+====================
+
+.. toctree::
+   :maxdepth: 2
+
+   intro
+   convention
+   important
+   terminology
+   references
+   api/index
+   examples/index

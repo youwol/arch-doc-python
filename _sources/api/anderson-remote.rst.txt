@@ -1,0 +1,78 @@
+.. _andersonianremote:
+
+AndersonianRemote
+-----------------
+
+.. py:class:: AndersonianRemote
+
+    An Andersoninan remote stress
+
+    .. py:method:: setTheta(v: float)
+
+        Set the orientation of the maximum prinipal stress according to the North in degrees and clock-wize
+
+        :param float v: The value
+
+    .. py:method:: setSh(fct: CoordinateFunctor)
+
+        Set the minimum principal stress value from a lambda
+
+        **Parameter** :ref:`CoordinateFunctor` fct: The lambda
+
+    .. py:method:: setSh(v: float)
+
+        Set the minimum principal stress value as a constant
+
+        :param float v: The value
+
+    .. py:method:: setSH(fct: CoordinateFunctor)
+
+        Set the maximum principal stress value from a lambda
+
+        **Parameter** :ref:`CoordinateFunctor` fct: The lambda
+
+    .. py:method:: setSH(v: float)
+
+        Set the maximum principal stress value as a constant
+
+        :param float v: The value
+
+    .. py:method:: setSv(fct: CoordinateFunctor)
+
+        Set the vertical principal stress value from a lambda
+
+        **Parameter** :ref:`CoordinateFunctor` fct: The lambda
+
+    .. py:method:: setSv(v: float)
+
+        Set the vertical principal stress value as a constant
+
+        :param float v: The value
+
+    .. py:method:: valueAt(p: Coordinate) -> StressTensor
+
+        Get the stress at p
+
+        **Parameter** :ref:`Coordinate` p: The point coordinates
+        :return: The stress tensor as a flat array `[xx, xy, xz, yy, yz, zz]`
+
+    .. py:method:: tractionAt(p: Coordinate, n: Coordinate) -> Coordinate
+
+        Get the traction at p given the normal n
+
+         **Parameter** :ref:`Coordinate` p: The point coordinates
+
+         **Parameter** :ref:`Coordinate` n: The normal to the plane
+         
+        :return: The traction vector
+
+    Usage
+    -----
+.. code-block:: python
+
+    remote = AndersonianRemote()
+    remote.setTheta(35)
+    remote.setSh(lambda p: [0, 0, 0, 0, 0, 1000*p[2]])
+    remote.setSH(lambda p: [0, 0, 0, 0, 0, 1000*p[2]])
+    remote.setSv(-1)
+    model.addRemote(remote)

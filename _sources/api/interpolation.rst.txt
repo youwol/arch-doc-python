@@ -1,0 +1,29 @@
+.. _interpolation:
+
+Interpolation
+-------------
+
+.. py:class:: Interpolation
+
+    On a triangulated surface, allows to interpolate a scalar, displacement or stress field
+    from vertices to triangles or from triangle to vertices.
+
+    .. py:method:: Interpolation(surface: Surface)
+
+        The constructor
+
+        :param Surface surface: The considered surface
+
+    .. py:method:: fromVerticesToTriangles(field: Vector) -> Vector
+
+        Convert the scalar, displacement or stress field defined at vertices to triangles
+
+        :param Vector field: The field defined at vertices
+        :return: The converted field at triangles
+
+    .. py:method:: fromTrianglesToVertices(field: Vector) -> Vector
+
+        Convert the scalar, displacement or stress field defined at triangles to vertices
+
+        :param Vector field: The field defined at triangles
+        :return: The converted field at vertices

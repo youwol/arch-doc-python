@@ -1,0 +1,54 @@
+References
+---------------
+
+.. _A. L. Thomas Stanford master's thesis: https://searchworks.stanford.edu/view/2830996
+.. _F. Maerten Stanford and Montpellier PhD's thesis: https://www.researchgate.net/publication/257925612_Geomechanics_to_solve_geological_structure_issues_forward_inverse_and_restoration_modeling
+.. _F. Maerten, L. Maerten and D. D. Pollard: https://www.sciencedirect.com/science/article/pii/S0098300414001496
+.. _Nikkhoo et al.: https://academic.oup.com/gji/article/201/2/1119/572006
+
+.. _boundary element: https://en.wikipedia.org/wiki/Boundary_element_method
+
+This `boundary element`_ code is based on `A. L. Thomas Stanford master's thesis`_,
+with extensions from `F. Maerten Stanford and Montpellier PhD's thesis`_,
+a main publication from `F. Maerten, L. Maerten and D. D. Pollard`_
+and with corrections for singular points from `Nikkhoo et al.`_
+
+Non exhaustive list of publications related to **Arch**:
+
+.. _Kaven, J. O., Hickman, S. H., Davatzes, N. C., & Mutlu, O. (2012): https://www.researchgate.net/profile/Stephen-Hickman/publication/257550613_Linear_complementarity_formulation_for_3D_frictional_sliding_problems/links/0deec53794f7625c3b000000/Linear-complementarity-formulation-for-3D-frictional-sliding-problems.pdf
+.. _Maerten, F., Resor, P., Pollard, D., & Maerten, L. (2005): https://pdfs.semanticscholar.org/1aec/4bf216151024d84a58cbd5344d6ed8092b3f.pdf
+.. _Maerten, F., & Maerten, L. (2008)`: https://www.witpress.com/Secure/elibrary/papers/BE08/BE08020FU1.pdf
+.. _Maerten, F. (2010): https://tel.archives-ouvertes.fr/file/index/docid/537899/filename/thesemaerten.pdf
+.. _Maerten, F., Maerten, L., & Cooke, M. (2010): https://d1wqtxts1xzle7.cloudfront.net/50095188/s10596-009-9170-x20161104-19878-4cjxsj.pdf?1478245114=&response-content-disposition=inline%3B+filename%3DSolving_3D_boundary_element_problems_usi.pdf&Expires=1616062240&Signature=be1XSOUHR37YgN8UTzrU--1nFWQxsvuDDpqXWo3fuoV8cZw2hhGUWziRcYFJ-wKcqexWLKVM6If4wonbvPYWGJ1q10IN6QC~K9ouS0FS~oru2ArQ4lmFwd1BXntvBUe-~MjQt8VZqCrxdRXWSGTKf39J8FFeOqn6b90KdEXOLpOVmkg~uTxjs5UaH0~cIb7szzCzLIeqzWCrsB-SQAklawRz7dcZknxgEDlpyh9hA7d9Fw5Be9Ie2kAnRVWsMwDC1ZvQyd-7eWkBoNfvQfz4rPOdMb3KXSZuKQi6EJ~fT9wEq1nKRzrlGzn~B0pbx-sgZHAJJfW0cBuuYtuqqIMxmA__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+.. _Maerten, F., Maerten, L., & Pollard, D. D. (2014): https://www.sciencedirect.com/science/article/pii/S0098300414001496
+.. _Maerten, F., Madden, E. H., Pollard, D. D., & Maerten, L. (2016): https://www.sciencedirect.com/science/article/abs/pii/S0040195116000731
+.. _Maerten, L., Maerten, F., Lejri, M., & Gillespie, P. (2016): https://www.sciencedirect.com/science/article/abs/pii/S0191814116300839
+.. _Maerten, F., Maerten, L., (2017): https://www.ring-team.org/component/liad/?view=pub&id=4785
+.. _Maerten, L., Maerten, F., & Lejri, M. (2018): https://www.sciencedirect.com/science/article/abs/pii/S0191814117302316
+.. _Maerten, F., Maerten, L., R. Plateaux & Cornard, P. (2022): https://www.cambridge.org/core/journals/geological-magazine/article/abs/joint-inversion-of-tectonic-stress-and-magma-pressures-using-dyke-trajectories/8A369D4DFE3825EDF7C0B6EB7DBA7979
+.. _Nikkhoo, M., & Walter, T. R. (2015): https://academic.oup.com/gji/article/201/2/1119/572006
+.. _Okada, Y. (1985): https://engineering.purdue.edu/~ce597m/Handouts/Surface%20deformation%20due%20to%20shear%20and%20tensile%20faults%20in%20a%20half_space.pdf
+.. _Thomas A. L., (1994): https://searchworks.stanford.edu/view/2830996
+.. _Soliva, R., Maerten, F., Petit, J. P., & Auzias, V. (2010): https://www.sciencedirect.com/science/article/abs/pii/S0191814110000179
+.. _Soliva, R., Maerten, F., Maerten, L., & Mattila, J. (2019): https://se.copernicus.org/articles/10/1141/2019/
+.. _Jeyakumaran, M., Rudnicki, J. W., & Keer, L. M. (1992): https://www.researchgate.net/profile/John-Rudnicki/publication/246850719_Modeling_Slip_Zones_with_Triangular_Dislocation_Elements/links/53ced8050cf25dc05cfad4ff/Modeling-Slip-Zones-with-Triangular-Dislocation-Elements.pdf
+.. _Comninou, M., & Dundurs, J. (1975): https://link.springer.com/article/10.1007/BF00126985
+ 
+ 1. `Kaven, J. O., Hickman, S. H., Davatzes, N. C., & Mutlu, O. (2012)`_. Linear complementarity formulation for 3D frictional sliding problems. Computational Geosciences, 16(3), 613-624.
+ 2. `Maerten, F., Resor, P., Pollard, D., & Maerten, L. (2005)`_. Inverting for slip on three-dimensional fault surfaces using angular dislocations. Bulletin of the Seismological Society of America, 95(5), 1654-1665.
+ 3. `Maerten, F., & Maerten, L. (2008)`_. Iterative 3d bem solver on complex faults geometry using angular dislocation approach in heterogeneous, isotropic elastic whole or halfspace. Brebbia, editor, Boundary Elements and other Mesh Reduction Methods, 30, 201-208.
+ 4. `Maerten, F. (2010)`_. Geomechanics to solve geological structure issues: forward, inverse and restoration modeling (Doctoral dissertation, UNIVERSITE MONTPELLIER II SCIENCES ET TECHNIQUES DU LANGUEDOC).
+ 5. `Maerten, F., Maerten, L., & Cooke, M. (2010)`_. Solving 3D boundary element problems using constrained iterative approach. Computational Geosciences, 14(4), 551-564.
+ 6. `Maerten, F., Maerten, L., & Pollard, D. D. (2014)`_. iBem3D, a three-dimensional iterative boundary element method using angular dislocations for modeling geologic structures. Computers & Geosciences, 72, 1-17.
+ 7. `Maerten, F., Madden, E. H., Pollard, D. D., & Maerten, L. (2016)`_. Incorporating fault mechanics into inversions of aftershock data for the regional remote stress, with application to the 1992 Landers, California earthquake. Tectonophysics, 674, 52-64.
+ 8. `Maerten, L., Maerten, F., Lejri, M., & Gillespie, P. (2016)`_. Geomechanical paleostress inversion using fracture data. Journal of structural Geology, 89, 197-213.
+ 9. `Maerten, F., Maerten, L., (2017)`_. Stress Distribution Around Complex Salt Structures : a New Approach Using Fast 3D Boundary Element Method. 2017 Ring Meeting, pages 12--15, ASGA
+ 10. `Maerten, L., Maerten, F., & Lejri, M. (2018)`_. Along fault friction and fluid pressure effects on the spatial distribution of fault-related fractures. Journal of Structural Geology, 108, 198-212.
+ 11. `Maerten, F., Maerten, L., R. Plateaux & Cornard, P. (2022)`_. Joint inversion of tectonic stress and magma pressures using dyke trajectories. Geological Magazine
+ 12. `Nikkhoo, M., & Walter, T. R. (2015)`_. Triangular dislocation: an analytical, artefact-free solution. Geophysical Journal International, 201(2), 1119-1141.
+ 13. `Okada, Y. (1985)`_. Surface deformation due to shear and tensile faults in a half-space. Bulletin of the seismological society of America, 75(4), 1135-1154.
+ 14. `Thomas A. L., (1994)`_. Poly3D : a three-dimensional, polygonal element, displacement discontinuity boundary element computer program with applications to fractures, faults, and cavities in the Earth's crust. Stanford M.S. thesis, Department of Geology
+ 15. `Soliva, R., Maerten, F., Petit, J. P., & Auzias, V. (2010)`_. Field evidences for the role of static friction on fracture orientation in extensional relays along strike-slip faults: comparison with photoelasticity and 3-D numerical modeling. Journal of Structural Geology, 32(11), 1721-1731.
+ 16. `Soliva, R., Maerten, F., Maerten, L., & Mattila, J. (2019)`_. Fault slip envelope: a new parametric investigation tool for fault slip based on geomechanics and 3-D fault geometry. Solid Earth, 10(4), 1141-1154.
+ 17. `Jeyakumaran, M., Rudnicki, J. W., & Keer, L. M. (1992)`_. Modeling slip zones with triangular dislocation elements. Bulletin of the Seismological Society of America, 82(5), 2153-2169.
+ 18. `Comninou, M., & Dundurs, J. (1975)`_. The angular dislocation in a half space. Journal of Elasticity, 5, 203-216.

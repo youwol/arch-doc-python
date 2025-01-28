@@ -1,0 +1,150 @@
+.. _surface:
+
+Surface
+-------
+
+.. py:class:: Surface
+
+    A surface discontinuity representing either a fault or a cavity.
+
+    .. py:method:: Surface(model: Model, coordinates: Coordinates, indices: Indices)
+
+        The constructor
+
+        :param Model model: The model for which this surface belongs to
+        :param Coordinates coordinates: the vertices coordinates as a flat array [x,y,z,x,y,z,...]
+        :param Indices indices: the triangle indices as a flat array [i,j,k, i,j,k,...]
+
+        .. code-block:: python
+
+            # 4 vertices coordinates
+            vertices = [0.0, 0.0, 0.0,   0.0, 1.0, 0.0,   1.0, 1.0, 0.0,   1.0, 0.0, 0.0]
+
+            # triangles indices
+            triangles = [0,1,2, 0,2,3]
+
+            surface = Surface(model, vertices, triangles)
+
+    .. py:method:: vertices() -> Coordinates
+
+        Get the vertices coordinates as a flat array.
+
+    .. py:method:: triangles() -> Indices
+
+        Get the triangle indices as a flat array.
+
+    .. py:method:: nbTriangles() -> int
+
+        Get the number of triangle making this surface
+
+    .. py:method:: nbVertices() -> int
+
+        Get the number of vertices making this surface
+
+    Setup boundary conditions and others
+        .. py:method:: changeCoordinates(c: Coordinates) -> None
+            
+        .. py:method:: setBC(axis: str, typeBc: str, value: float) -> None
+            
+            Set the boundary conditions on this discontinuity using a constant value.
+
+            :param str axis: the axis name (``normal``, ``strike`` or ``dip``)
+
+            :param str typeBc: the type of boubdary condition. For traction boundary
+                condition, possible names are ``t``, ``0``, ``free``, ``traction``, ``neumann`` or ``unknown``.
+                For displacement boundary condition, possible names are ``b``, ``1``, ``displ``, ``displacement``, ``fixed``, ``dirichlet``, ``locked`` or ``imposed``.
+
+            :param float value: the constant initial value
+
+            .. code-block:: python 
+
+                s = Surface(model, vertices, triangles)
+                s.setBC("normal", "free", 0)
+
+
+        .. py:method:: setBC(axis: str, typeBc: str, fct: CoordinateFunctor) -> None
+
+            Set the boundary conditions on this discontinuity using a lambda function.
+
+            :param str axis: the axis name (``normal``, ``strike`` or ``dip``)
+
+            :param str typeBc: the type of boubdary condition. For traction boundary
+                condition, possible names are ``t``, ``0``, ``free``, ``traction``, ``neumann`` or ``unknown``.
+                For displacement boundary condition, possible names are ``b``, ``1``, ``displ``, ``displacement``, ``fixed``, ``dirichlet``, ``locked`` or ``imposed``.
+
+            :param lambda value: the lambda function
+
+            .. code-block:: python
+
+                rho = 1200
+                g = 9.81
+                s = Surface(model, vertices, triangles)
+                s.setBC("normal", "free", lambda x,y,z: -rho*g*abs(z))
+
+
+        .. py:method:: setBCValues(v: float) -> None
+
+            Reset the boundary condition values as a constant value
+
+        .. py:method:: setBCValues(values: Vector) -> None
+
+            Set the boundary condition values
+
+        .. py:method:: setDisplFromVertices(displ: Vector) -> None
+
+            Set the displacement discontinuity at vertices (will interpolate at triangles)
+
+        .. py:method:: setDisplFromTriangles(displ: Vector) -> None
+
+            Set the displacement discontinuity at triangles
+
+        .. py:method:: addConstraint(ineq: Inequality) -> None
+
+            Add a new inequality constraint
+
+    Output
+        .. py:method:: seismicMoment() -> float
+
+            Get the seismic moment for this surface
+
+        .. py:method:: burgers(bool local, bool atTriangles) -> Vector
+
+            Get the displacement discontinuity (Burger's vectors) as a flat array
+
+            :param bool local: If displacement discontinuities have to stay in triangle local coordinate system
+            :param bool atTriangles: If displacement discontinuities have to be interpolated at vertices or not
+
+        .. py:method:: burgersPlus(bool local, bool atTriangles, delta: float = 1e-7) -> Vector
+
+            Get the displacement discontinuity on the positive side as a flat array
+
+            :param bool local: If displacement discontinuities have to stay in triangle local coordinate system
+            :param bool atTriangles: If displacement discontinuities have to be interpolated at vertices or not
+            :param float delta: The distance to the triangle in order to avoid singularities
+
+        .. py:method:: burgersMinus(bool local, bool atTriangles, delta: float = 1e-7) -> Vector
+
+            Get the displacement discontinuity on the negative side as a flat array
+
+            :param bool local: If displacement discontinuities have to stay in triangle local coordinate system
+            :param bool atTriangles: If displacement discontinuities have to be interpolated at vertices or not
+            :param float delta: The distance to the triangle in order to avoid singularities
+
+        .. py:method:: residualTractions() -> Vector
+
+            Get the residual tractions if any (e.g., when frictio is used.
+
+
+    Usage
+    -----
+
+    .. code-block:: python
+
+        # 4 vertices coordinates
+        vertices = [0.0, 0.0, 0.0,   0.0, 1.0, 0.0,   1.0, 1.0, 0.0,   1.0, 0.0, 0.0]
+
+        # triangles indices
+        triangles = [0,1,2, 0,2,3]
+
+        # Surface s is directly put into the model
+        s = Surface(model, coordinates = vertices, indices = triangles)

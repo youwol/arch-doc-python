@@ -1,0 +1,42 @@
+.. _postprocess:
+
+Postprocess
+-----------
+
+.. py:class:: Postprocess
+
+    .. py:method:: Postprocess(model: Model)
+
+    .. py:method:: setNbCores(cores: int) -> None
+    .. py:method:: isHalfSpace() -> bool
+
+    Messaging
+        .. py:method:: onProgress(p: ProgressFunctor) -> None
+        .. py:method:: onEnd(const EndFunctor &) -> None
+        .. py:method:: stopRequested(p: StopRequested) -> bool
+        .. py:method:: onMessage(m: MessageFunctor) -> None
+        .. py:method:: onWarning(w: WarningFunctor) -> None
+        .. py:method:: onError(e: ErrorFunctor) -> None
+
+    Compute at one point
+        .. py:method:: displAt(p: Coordinate) -> Coordinate
+        .. py:method:: strainAt(p: Coordinate) -> StressTensor
+        .. py:method:: stressAt(p: Coordinate) -> StressTensor
+
+    Compute at many points
+        .. py:method:: displ(p: Coordinates) -> Vector
+        .. py:method:: strain(p: Coordinates) -> Vector
+        .. py:method:: stress(p: Coordinates) -> Vector
+
+    
+
+    .. .. py:method:: setDelta(d: float) -> None
+
+    .. .. py:method:: burgers(local: bool, atTriangle: bool) -> list[Vector]
+
+    ..     Each entry of the returned list corresponds to a Surface
+
+    .. .. py:method:: burgersPlus(local: bool, atTriangle: bool) -> list[Vector]
+    .. .. py:method:: burgersMinus(local: bool, atTriangle: bool) -> list[Vector]
+    .. .. py:method:: residualTractions() -> list[Vector]
+

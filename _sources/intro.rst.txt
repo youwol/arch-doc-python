@@ -1,0 +1,27 @@
+.. _intro:
+
+.. _YouWol: https://youwol.com
+.. _Poly3D: https://en.wikipedia.org/wiki/David_D._Pollard
+.. _iBem3D: https://www.sciencedirect.com/science/article/pii/S0098300414001496
+.. _online: https://youwol.github.io/arch-doc/dist/docs/modules.html
+.. _node: https://nodejs.org/en/
+.. _more references: https://doc.youwol.com/arch-doc/dist/docs/modules/Biblio.html
+.. _boundary element : https://en.wikipedia.org/wiki/Boundary_element_method
+
+Introduction
+============
+
+This is the official documentation of **Arch** for Python.
+
+**Arch** is a displacement discontinuity method (a boundary element method) developped by `YouWol`_.
+It is the successor of `Poly3D`_ and `iBem3D`_.
+
+.. image:: media/arche.jpg
+
+Documentation in TypeScript
+---------------------------
+
+If needed, see the `online`_ generated documentation for TypeScript.
+
+
+.. image:: media/example2.jpg

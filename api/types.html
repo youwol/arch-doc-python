@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Types in Arch &mdash; PyArch 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="prev" title="BurgerFilter" href="burger_filter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PyArch
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convention.html">Convention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../important.html">Important</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">UserRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anderson-remote.html">AndersonianRemote</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolation.html">Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surface.html">Surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postprocess.html">Postprocess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forward.html">Forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inequalities.html">Inequalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="burger_filter.html">BurgerFilter</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Types in Arch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#coordinate">Coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coordinates">Coordinates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indices">Indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stresstensor-as-a-flat-array">StressTensor (as a flat array)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coordinatefunctor">CoordinateFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stressfunctor">StressFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vector">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#progressfunctor">ProgressFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#messagefunctor">MessageFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#warningfunctor">WarningFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errorfunctor">ErrorFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#endfunctor">EndFunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stoprequested">StopRequested</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contraintfunctor">ContraintFunctor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyArch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API</a></li>
+      <li class="breadcrumb-item active">Types in Arch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="types-in-arch">
+<span id="types"></span><h1>Types in Arch<a class="headerlink" href="#types-in-arch" title="Link to this heading"></a></h1>
+<p>(since Python 3.12, we can use the <cite>type</cite> keyword)</p>
+<section id="coordinate">
+<span id="id1"></span><h2>Coordinate<a class="headerlink" href="#coordinate" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">Coordinate</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="coordinates">
+<span id="id2"></span><h2>Coordinates<a class="headerlink" href="#coordinates" title="Link to this heading"></a></h2>
+<p>Represents a list of Coordinate</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">Coordinates</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Link to this heading"></a></h2>
+<p>Represents a list of indices (int)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">Indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="stresstensor-as-a-flat-array">
+<h2>StressTensor (as a flat array)<a class="headerlink" href="#stresstensor-as-a-flat-array" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">StressTensor</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>and representing a tensor ordered as</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[xx, xy, xz, yy, yz, zz]</span>
+</pre></div>
+</div>
+</section>
+<section id="coordinatefunctor">
+<span id="id3"></span><h2>CoordinateFunctor<a class="headerlink" href="#coordinatefunctor" title="Link to this heading"></a></h2>
+<p>The signature is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CoordinateFunctor</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Coordinates</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</section>
+<section id="stressfunctor">
+<h2>StressFunctor<a class="headerlink" href="#stressfunctor" title="Link to this heading"></a></h2>
+<p>The signature is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">StressFunctor</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Coordinates</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StressTensor</span>
+</pre></div>
+</div>
+</section>
+<section id="vector">
+<h2>Vector<a class="headerlink" href="#vector" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">Vector</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="progressfunctor">
+<h2>ProgressFunctor<a class="headerlink" href="#progressfunctor" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ProgressFunctor</span><span class="p">(</span><span class="n">iteration</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">convergence</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="messagefunctor">
+<h2>MessageFunctor<a class="headerlink" href="#messagefunctor" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MessageFunctor</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="warningfunctor">
+<h2>WarningFunctor<a class="headerlink" href="#warningfunctor" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WarningFunctor</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="errorfunctor">
+<h2>ErrorFunctor<a class="headerlink" href="#errorfunctor" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ErrorFunctor</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="endfunctor">
+<h2>EndFunctor<a class="headerlink" href="#endfunctor" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EndFunctor</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="stoprequested">
+<h2>StopRequested<a class="headerlink" href="#stoprequested" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">StopRequested</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</pre></div>
+</div>
+</section>
+<section id="contraintfunctor">
+<h2>ContraintFunctor<a class="headerlink" href="#contraintfunctor" title="Link to this heading"></a></h2>
+<p>The signature is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ContraintFunctor</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Coordinate</span><span class="p">,</span> <span class="n">traction</span><span class="p">:</span> <span class="n">Coordinate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coordinate</span>
+</pre></div>
+</div>
+<p>Parameter position is the coordinates of the triangle center</p>
+<p>Parameter  traction is the actual traction vector of the triangle</p>
+<p>Return the modified traction vector</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="burger_filter.html" class="btn btn-neutral float-left" title="BurgerFilter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, fmaerten.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

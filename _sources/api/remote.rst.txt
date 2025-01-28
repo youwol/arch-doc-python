@@ -1,0 +1,37 @@
+.. _userremote:
+
+UserRemote
+----------
+
+.. py:class:: UserRemote
+
+    A user define remote stress
+
+    .. py:method:: setFunction(fct: StressFunctor)
+
+        Set the user remote function
+
+        :param :py:func:`StressFunctor` fct: The function
+
+    .. py:method:: valueAt(p: Coordinate) -> StressTensor
+
+        Get the stress at p
+
+        :param Coordinate p: The point coordinates
+        :return: The stress tensor as a flat array `[xx, xy, xz, yy, yz, zz]`
+
+    .. py:method:: tractionAt(p: Coordinate, n: Coordinate) -> Coordinate
+
+        Get the traction at p given the normal n
+
+        :param Coordinate p: The point coordinates
+        :param Coordinate n: The normal to the plane
+        :return: The traction vector
+
+    Usage
+    -----
+.. code-block:: python
+
+    remote = UserRemote()
+    remote.setFunction(lambda p: [0, 0, 0, 0, 0, 1000*p[2]])
+    model.addRemote(remote)

@@ -1,0 +1,24 @@
+.. _Iinequalities:
+
+Inequalities
+------------
+
+.. py:class:: Inequality
+
+    .. py:method:: name() -> str
+
+.. py:class:: Tic(Inequality)
+
+.. py:class:: Coulomb(Tic)
+
+    .. py:method:: setFriction(f: float) -> None
+    .. py:method:: setFriction(f: Vector) -> None
+
+    .. py:method:: setCohesion(c: float) -> None
+    .. py:method:: setCohesion(c: Vector) -> None
+
+
+.. py:class:: UserTic(Tic)
+
+    .. py:method:: setFunction(c: ContraintFunctor) -> None
+    

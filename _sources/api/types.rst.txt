@@ -1,0 +1,125 @@
+.. _types:
+
+Types in Arch
+=============
+
+(since Python 3.12, we can use the `type` keyword)
+
+.. _coordinate:
+
+Coordinate
+----------
+.. code-block:: python
+
+    type Coordinate = Tuple[float, float, float]
+
+.. _coordinates:
+
+Coordinates
+-----------
+
+Represents a list of Coordinate
+
+.. code-block:: python
+
+    type Coordinates = list[float]
+
+Indices
+-------
+
+Represents a list of indices (int)
+
+.. code-block:: python
+
+    type Indices = list[int]
+
+StressTensor (as a flat array)
+-------------------------------
+.. code-block:: python
+
+    type StressTensor = Tuple[float, float, float, float, float, float]
+
+and representing a tensor ordered as
+
+.. code-block:: console
+
+    [xx, xy, xz, yy, yz, zz]
+
+
+.. _coordinatefunctor:
+
+CoordinateFunctor
+-----------------
+
+The signature is 
+
+.. code-block:: python
+
+    CoordinateFunctor(p: Coordinates) -> float
+
+StressFunctor
+--------------
+
+The signature is 
+
+.. code-block:: python
+
+    StressFunctor(p: Coordinates) -> StressTensor
+
+Vector
+------
+.. code-block:: python
+
+    type Vector = list[float]
+
+ProgressFunctor
+---------------
+.. code-block:: python
+
+    ProgressFunctor(iteration: int, convergence: float, context: int) -> None
+
+MessageFunctor
+--------------
+.. code-block:: python
+
+    MessageFunctor(msg: str) -> None
+
+WarningFunctor
+--------------
+.. code-block:: python
+
+    WarningFunctor(msg: str) -> None
+
+ErrorFunctor
+------------
+.. code-block:: python
+
+    ErrorFunctor(msg: str) -> None
+
+EndFunctor
+----------
+.. code-block:: python
+
+    EndFunctor() -> None
+
+StopRequested
+-------------
+.. code-block:: python
+
+    StopRequested() -> bool
+
+
+ContraintFunctor
+----------------
+
+The signature is 
+
+.. code-block:: python
+
+    ContraintFunctor(position: Coordinate, traction: Coordinate) -> Coordinate
+
+Parameter position is the coordinates of the triangle center
+
+Parameter  traction is the actual traction vector of the triangle
+
+Return the modified traction vector

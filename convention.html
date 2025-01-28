@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convention &mdash; PyArch 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Important" href="important.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyArch
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Convention</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#okada-vs-poly3d">Okada vs Poly3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#engineer-vs-geologist">Engineer vs geologist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-vs-global">Local vs global</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="important.html">Important</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyArch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Convention</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/convention.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="convention">
+<h1>Convention<a class="headerlink" href="#convention" title="Link to this heading"></a></h1>
+<section id="okada-vs-poly3d">
+<h2>Okada vs Poly3D<a class="headerlink" href="#okada-vs-poly3d" title="Link to this heading"></a></h2>
+<p>As opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/David_D._Pollard">Poly3D</a>, we use the <a class="reference external" href="https://pubs.geoscienceworld.org/ssa/bssa/article-abstract/75/4/1135/118782/Surface-deformation-due-to-shear-and-tensile?redirectedFrom=fulltext">Okada</a> convention where x-axis represents the normal
+direction of a triangular element, the y-axis the strike direction and the z-axis the dip-direction
+pointing upward for positive value:</p>
+<img alt="_images/convention.png" src="_images/convention.png" />
+<p>As the convention is related to the triangular elements making the discontinuities,
+and specifically the displacement discontinuity also called <strong>Burger</strong> vector, you can
+switch from <strong>Okada</strong> to <strong>Poly3D</strong> (or any convention of your choise) by using the
+<a class="reference internal" href="api/burger_filter.html#burgerfilter"><span class="std std-ref">BurgerFilter</span></a> class. Here is an example of using the filter while gathering the
+computed burger vectors from a surface discontinuity:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch to the Poly3D convention</span>
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">BurgerFilter</span><span class="p">()</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">setAxisOrder</span><span class="p">([</span><span class="s1">&#39;dip&#39;</span><span class="p">,</span> <span class="s1">&#39;strike&#39;</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">])</span>
+<span class="nb">filter</span><span class="o">.</span><span class="n">setAxisRevert</span><span class="p">([</span><span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">])</span>
+<span class="n">displ</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="n">surface</span><span class="o">.</span><span class="n">displ</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="engineer-vs-geologist">
+<h2>Engineer vs geologist<a class="headerlink" href="#engineer-vs-geologist" title="Link to this heading"></a></h2>
+<p>As opposed to <strong>Poly3D</strong> which is based on geologist convention (for which compression is positive),
+we use the engineer convention, i.e., where compression is negatif.</p>
+<p>Any positive value is extension, not compression. Therefore, a normal to a joint will be parallel
+to the minimum compressive stress, i.e., the maximum eigen value <span class="math notranslate nohighlight">\(\sigma_1\)</span>, not the minimum <span class="math notranslate nohighlight">\(\sigma_3\)</span>
+as in geologist convention.</p>
+</section>
+<section id="local-vs-global">
+<h2>Local vs global<a class="headerlink" href="#local-vs-global" title="Link to this heading"></a></h2>
+<p>For discontinuities, burger’s vectors are computed at triangle’s center and in triangle local
+coordinate system.</p>
+<p>However, when displaying (using OpenGl) iso-contours of Burgers on fault surfaces, this displacemment
+field has to be defined <strong>at vertices</strong> and in <strong>local coordinate system</strong>.</p>
+<p>Similarly, when displaying vector field on fault surfaces, this
+displacemment field has to be defined at <strong>vertices</strong> and in <strong>glocal coordinate system</strong>.</p>
+<p>This is why the object <a class="reference internal" href="api/postprocess.html#postprocess"><span class="std std-ref">Postprocess</span></a> provide the method <cite>burgers</cite> with 2 booblean parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">postprocess</span><span class="o">.</span><span class="n">burgers</span><span class="p">(</span><span class="n">local</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">atTriangles</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="important.html" class="btn btn-neutral float-right" title="Important" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, fmaerten.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

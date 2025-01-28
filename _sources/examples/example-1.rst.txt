@@ -1,0 +1,136 @@
+Example 1
+=========
+
+This example shows how to build a simple model, perform some
+computations and display the results at the free surface using
+`matplotlib`
+
+The necessary imports:
+
+.. code-block:: python
+
+    from pyarch import Model, Surface, UserTic, Forward, Postprocess, UserRemote
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+
+
+Define a function to plot iso-contours:
+
+.. code-block:: python
+
+    def plotIso(postprocess: Postprocess):
+        def plot(Z: list[list[float]], n: int):
+            min = np.min(Z)
+            max = np.max(Z)
+            print('min, max =', min, max)
+            if min == max:
+                return
+
+            coords = np.linspace(-2, 2, n)
+            levels = np.linspace(min, max, n)
+            X, Y = np.meshgrid(levels, coords)
+            
+            cmap = 'jet'
+            
+            fig, ax = plt.subplots(figsize=(6, 6))
+            CS = ax.contourf(coords, coords, Z, levels=levels, cmap=cmap)
+            CS2 = ax.contour(CS, levels=CS.levels[::3], colors='black', linewidths=1)
+
+            ax.margins(0.2)
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.set_title("Sxy")
+            
+            cbar = fig.colorbar(CS)
+            cbar.add_lines(CS2)
+
+            plt.show()
+
+        Z = np.zeros( shape = (n,n) )
+        """
+        Very bad solution since we are computing the stress at every point, one by one.
+        The best will be to create a grid and to send the positions as a flat array.
+        That way the parallelism on multi-cores can be activated.
+        """
+        for i in range(0, n):
+            x = min + i/(n-1)*(max-min)
+            for j in range(0, n):
+                y = min + j/(n-1)*(max-min)
+                Z[i][j] = postprocess.stressAt([x, y, 1])[0] # 0: Sxx
+
+        plot(Z, n)
+
+And a function to display streamlines
+
+.. code-block:: python
+
+    def plotStream(postprocess: Postprocess):
+        w = 10
+        n = 50
+
+        x = np.arange(0, n)
+        y = np.arange(0, n)
+        X, Y = np.meshgrid(x, y)
+        u = np.ones((n, n)) 
+        v = np.ones((n, n)) 
+
+        scale = 2*w/(n-1)
+        for i in range(0, n):
+            x = -w + i*scale
+            for j in range(0, n):
+                y = -w + j*scale
+                d = postprocess.displAt([x, y, 1])
+                u[i][j] = d[0]
+                v[i][j] = d[1]
+
+        speed = np.sqrt(u**2 + v**2)
+        lw = 5 * speed / speed.max()
+        
+        fig = plt.figure(figsize = (6, 6))
+        plt.streamplot(X, Y, u, v, density = 1.5) # , linewidth = lw
+        plt.show()
+
+Now the Arch Python code:
+
+.. code-block:: python
+
+    rho = 2200
+    g = 9.81
+    Rh = 0.1  # Normalized Sh according to Sv
+    RH = 0.6  # Normalized SH according to Sv
+
+    model = Model()
+    model.setMaterial(0.25, 1000, rho)
+
+    fault = Surface(model, [0,0,0, 1,0,0, 0,1,-1], [0,1,2])
+    fault.setBC("dip", "free", 0)
+    fault.setBC("strike", "free",  0)
+    fault.setBC("normal", "free", 0)
+
+    userTic = UserTic(lambda pos, tract: [0, tract[1], tract[2]])
+    fault.addConstraint(userTic)
+
+    remote = UserRemote()
+    remote.setFunction(lambda s: [0, 0, 0, 0, 0, 1000*s[2]])
+    model.addRemote(remote)
+
+    forward = Forward(model)
+    forward.select('seidel')
+    forward.onMessage(lambda msg: print('ARCH >>', msg))
+    forward.onWarning(lambda msg: print('ARCH >>', msg))
+    forward.onEnd(lambda: print('ARCH >> End solving'))
+    forward.onProgress(lambda iter, conv, context: print('ARCH >> iter=', iter, ' conv=', conv, ' for context', context))
+    forward.run(True)
+
+    # -------------------------------
+
+    min = -2
+    max = 2
+    n = 51
+
+    postprocess = Postprocess(model)
+    postprocess.onMessage(lambda msg: print('ARCH postprocess:', msg))
+
+    plotIso(postprocess)
+    plotStream(postprocess)
