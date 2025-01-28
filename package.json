@@ -1,0 +1,11 @@
+{
+  "name": "arch-doc-python",
+  "version": "1.0.0",
+  "description": "python API for Arch",
+  "main": "index.htlm",
+  "scripts": {
+    "serve": "http-server"
+  },
+  "author": "fmaerten",
+  "license": "MIT"
+}
